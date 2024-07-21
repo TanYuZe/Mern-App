@@ -171,8 +171,6 @@ function Board(props) {
         setToDoListRights(res.data[0].App_permit_toDoList)
         setDoingRights(res.data[0].App_permit_Doing)
         setDoneRights(res.data[0].App_permit_Done)
-
-        //setCloseTasks(res.data.App_permit_Create)
       })
     }
   }, [grp, appdata])
@@ -221,12 +219,6 @@ function Board(props) {
       
      
     }
-
-    // if(createRights.includes(usergroup))
-    // {
-    //   return (<>
-    //     <CreateTaskModal app={grp} username={username}/></>)
-    // }
     
   }
   function planbutton()

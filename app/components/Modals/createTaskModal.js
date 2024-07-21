@@ -82,7 +82,7 @@ function CreateTaskModal(props) {
     {
 
     
-    axios.post('http://localhost:3001/createTask', {
+    axios.post('http://localhost:3001/CreateTask', {
       application: app,
         taskName: taskName,
         addToPlan: addToPlan,
