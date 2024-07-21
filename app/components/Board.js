@@ -55,16 +55,6 @@ function Board(props) {
   const [grpS, setgrpS] = useState(false)
   const [username, setUsername] = useState("")  
   const [plans, setplans] = useState([])
-
-  //fetch all task
-  // useEffect(() => {
-  //   axios.post('http://localhost:3001/getplans', {
-  //     acronym:grp}).then((res) => {
-        
-  //       setplans(res.data)
-  //       })
-    
-  // }, [grpS, grp])
   
   const [pln, setpln] = useState("All")
   const [plns, setplns] = useState(false)

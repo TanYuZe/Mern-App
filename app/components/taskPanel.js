@@ -9,20 +9,8 @@ import AuthContext from "../context/authContext";
 function TaskPanel(props) {
   const { createRights,openRights ,toDoListRights,doingRights, doneRights, updateTasks, taskState, handleShowModal, displayedTasks, rights, username, app, appdata } = props
   const {usergroup} = useContext(AuthContext)
-//const { tasks} = useContext(ApplicationContext)
-  // document.getElementById("helloHello").style.backgroundColor = "lightblue";
   const [email, setemail] = useState([])
-  // useEffect(() => {
-  //   axios.post("http://localhost:3001/getPlanInfo"),
-  //   {
-  //     plan_MVP_name : task.Task_plan,
-  //     appAcronym : app
-  //   }.then((res)=>{
-
-  //     setPlans(res.data)
-  //   })
-  // }, [task.Task_plan])
-  //
+ 
   
   async function promotetask(task) {
     axios.post("http://localhost:3001/movetaskstate", {
@@ -37,17 +25,6 @@ function TaskPanel(props) {
     
   }
   async function demotetask(task) {
-    // axios.post("http://localhost:3001/movetask", {
-    //   username: username,
-    //   application: app,
-    //   updatetype: "promote",
-    //   currentState: task.Task_state,
-    //   taskID: task.Task_id,
-    //   taskName: task.Task_name,
-    //   addToPlan: task.Task_plan,
-    //   taskDescription: task.Task_description,
-    //   taskNote: task.Task_notes
-    // })
     axios.post("http://localhost:3001/movetaskstate", {
       username: username,
       updatetype: "demote",
@@ -87,16 +64,6 @@ function sendemail(task)
     </>)
     }
 
-  //   if(task.Task_state==="toDoList" &&  openRights.includes(usergroup))
-  //   {
-  //     return ( <> 
-  //   <button disabled={
-  //     task.Task_state==="open"
-  //       ?true:false
-  //   } type="button" onClick={() => demotetask(task)} className="btn-arrow">
-  //   demote
-  // </button></>)
-  //   }
     //doing
     if(task.Task_state==="doing" &&  doingRights.includes(usergroup))
     {
@@ -130,78 +97,30 @@ function sendemail(task)
     demote
   </button></>)
     }
-  //   if(task.Task_state==="done" &&  usergroup.includes("team member"))
-  //   {
-  //     return ( <> 
-  //   <button disabled={
-  //     task.Task_state==="open"
-  //       ?true:false
-  //   } type="button" onClick={() => demotetask(task)} className="btn-arrow">
-  //   demote
-  // </button></>)
-  //   }
-    //close
-  //   if(task.Task_state==="close" &&  doneRights.includes(usergroup))
-  //   {
-  //     return ( <> 
-  //   <button disabled={
-  //     task.Task_state==="open"
-  //       ?true:false
-  //   } type="button" onClick={() => demotetask(task)} className="btn-arrow">
-  //   demote
-  // </button></>)
-  //   }
-
-    
-
-
   }
 
-
-  // function demotebtn(task)
-  // {
-
-  //   return ( <> <button disabled={
-  //     task.Task_state==="open"
-  //       ?true:false
-  //   } type="button" onClick={() => demotetask(task)} className="btn-arrow">
-  //   demote
-  // </button> </>)
-
-
-
-  // }
   const color = "white"
+  const hStyle = "darkblue"
   return (
     <div>
       {displayedTasks.map(task => (
         <div className="task-panel" >
-          <div className="task-div" style={{ backgroundColor: color }}>
+          <div className="task-div" style={{ backgroundColor: color , padding: 30}}>
             {/* <button id={task.task_id} type="button" className="task-button" data-bs-toggle="modal" data-bs-target="#taskInfoModal"> */}
-
-            <div className="top-section doFlex">
-              <div id="task-colour" className="indicate-colour" ></div>
-              <div className="task-info">
-              <h4 className="task-name">Task :{task.Task_name}</h4>
+              <h4 className="task-name" style={{ color: hStyle , fontWeight: "bold"}}>{task.Task_name}</h4>
                 <p className="task-owner-name">Owner: {task.Task_owner}</p>
-                <p className="plan-name">Plan: {task.Task_plan}</p>
-                
-                {/* <p className="task-panel-description">Description: {task.Task_description}</p> */}
-                
+                <p className="plan-name">Sprint: {task.Task_plan}</p>
                 {promotebtn(task)}
-            
-           
+
             <TaskinfoModal taskInfo={task} app={app} username={username} usergroup={usergroup} createRights={createRights} 
             openRights = {openRights} toDoListRights = {toDoListRights} doingRights={doingRights} doneRights={doneRights}/>
-              </div>
-            </div>
+            
           </div>
           <div className="task-navigation">
-            {/* Left button */}
-            
           </div>
         </div>
       ))}
+     
     </div>
   )
 
